@@ -133,7 +133,7 @@
     <p class="section-sub">
       MPs with the largest unspent MPLADS allocations. This is public money meant for your constituency.
     </p>
-    <canvas id="shameChart" height="220"></canvas>
+    <div style="position:relative"><canvas id="shameChart"></canvas></div>
     <p class="chart-note">⚠️ "Completed" = self-reported by contractor. No independent verification exists for pre-2023 data.</p>
   </div>
 </section>
@@ -149,20 +149,20 @@
 
     <div class="funnel-wrap">
       <div class="funnel-step funnel-recommend">
-        <div class="funnel-num" id="funnel-recommended">6,72,841</div>
+        <div class="funnel-num" id="funnel-recommended">—</div>
         <div class="funnel-lbl">Works Recommended</div>
       </div>
       <div class="funnel-arrow">▼</div>
       <div class="funnel-step funnel-sanction">
-        <div class="funnel-num" id="funnel-sanctioned">5,89,203</div>
+        <div class="funnel-num" id="funnel-sanctioned">—</div>
         <div class="funnel-lbl">Works Sanctioned</div>
-        <div class="funnel-drop">−12.4% dropped</div>
+        <div class="funnel-drop" id="funnel-drop-sanctioned"></div>
       </div>
       <div class="funnel-arrow">▼</div>
       <div class="funnel-step funnel-complete">
-        <div class="funnel-num" id="funnel-completed">4,21,876</div>
+        <div class="funnel-num" id="funnel-completed">—</div>
         <div class="funnel-lbl">Works Completed</div>
-        <div class="funnel-drop">−28.4% dropped</div>
+        <div class="funnel-drop" id="funnel-drop-completed"></div>
       </div>
     </div>
 

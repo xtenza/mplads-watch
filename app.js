@@ -180,42 +180,60 @@ function getUtilPct() {
 
 // ─── Hall of Shame Chart ─────────────────────────────────
 function renderShameChart() {
-  const MPs = state.summary.hall_of_shame.top_unspent;
-  const ctx = document.getElementById('shameChart').getContext('2d');
+  // Derive top-unspent from full mps list for more coverage
+  const MPs = [...state.mps.mps]
+    .filter(mp => (mp.stats.unspent_cr || 0) > 0)
+    .sort((a, b) => b.stats.unspent_cr - a.stats.unspent_cr)
+    .slice(0, 15)
+    .map(mp => ({
+      name: mp.name,
+      constituency: mp.constituency,
+      spent_cr:   mp.stats.spent_cr,
+      unspent_cr: mp.stats.unspent_cr,
+    }));
+
+  const canvas = document.getElementById('shameChart');
+  // Size canvas to fit all rows (approx 26px per row + padding)
+  canvas.height = MPs.length * 26 + 40;
+
+  const ctx = canvas.getContext('2d');
   if (window._shameChart) window._shameChart.destroy();
 
   window._shameChart = new Chart(ctx, {
     type: 'bar',
     data: {
-      labels: MPs.map(m => `${m.name}\n(${m.constituency})`),
+      labels: MPs.map(m => `${m.name} · ${m.constituency}`),
       datasets: [
         {
           label: 'Spent (₹Cr)',
           data: MPs.map(m => m.spent_cr),
-          backgroundColor: 'rgba(34,197,94,0.7)',
-          borderRadius: 3,
+          backgroundColor: 'rgba(34,197,94,0.75)',
+          borderRadius: 2,
+          barThickness: 8,
         },
         {
           label: 'Unspent (₹Cr)',
           data: MPs.map(m => m.unspent_cr),
-          backgroundColor: 'rgba(239,68,68,0.8)',
-          borderRadius: 3,
+          backgroundColor: 'rgba(239,68,68,0.85)',
+          borderRadius: 2,
+          barThickness: 8,
         },
       ],
     },
     options: {
       responsive: true,
+      maintainAspectRatio: false,
       indexAxis: 'y',
       scales: {
         x: {
           stacked: true,
           grid:   { color: 'rgba(255,255,255,0.05)' },
-          ticks:  { color: '#8892a4', font: { family: 'DM Sans' } },
+          ticks:  { color: '#8892a4', font: { family: 'DM Sans', size: 11 } },
         },
         y: {
           stacked: true,
           grid:   { display: false },
-          ticks:  { color: '#e8eaf0', font: { family: 'DM Sans', size: 12 } },
+          ticks:  { color: '#e8eaf0', font: { family: 'DM Sans', size: 10 }, padding: 4 },
         },
       },
       plugins: {
@@ -224,7 +242,7 @@ function renderShameChart() {
         },
         tooltip: {
           callbacks: {
-            label: ctx => ` ${ctx.dataset.label}: ₹${ctx.parsed.x} Cr`,
+            label: ctx => ` ${ctx.dataset.label}: ₹${ctx.parsed.x.toFixed(2)} Cr`,
           },
         },
       },
@@ -235,9 +253,30 @@ function renderShameChart() {
 // ─── Funnel ──────────────────────────────────────────────
 function updateFunnelNumbers() {
   const n = state.summary.national;
-  document.getElementById('funnel-recommended').textContent = fmtNum(n.total_works_recommended);
-  document.getElementById('funnel-sanctioned').textContent  = fmtNum(n.total_works_sanctioned);
-  document.getElementById('funnel-completed').textContent   = fmtNum(n.total_works_completed);
+
+  // Use pre-computed totals if present; otherwise derive from states + sectors data
+  const recommended = n.total_works_recommended
+    ?? state.states.states.reduce((sum, s) => sum + (s.works_recommended || 0), 0);
+  const completed   = n.total_works_completed
+    ?? state.states.states.reduce((sum, s) => sum + (s.works_completed   || 0), 0);
+  const sanctioned  = n.total_works_sanctioned
+    ?? state.sectors.national_breakdown.reduce((sum, s) => sum + (s.works_count || 0), 0);
+
+  document.getElementById('funnel-recommended').textContent = fmtNum(recommended);
+  document.getElementById('funnel-sanctioned').textContent  = fmtNum(sanctioned);
+  document.getElementById('funnel-completed').textContent   = fmtNum(completed);
+
+  // Update drop percentages dynamically
+  const dropSanction  = document.getElementById('funnel-drop-sanctioned');
+  const dropCompleted = document.getElementById('funnel-drop-completed');
+  if (dropSanction && recommended > 0) {
+    const pct = (((recommended - sanctioned) / recommended) * 100).toFixed(1);
+    dropSanction.textContent = `−${pct}% dropped`;
+  }
+  if (dropCompleted && sanctioned > 0) {
+    const pct = (((sanctioned - completed) / sanctioned) * 100).toFixed(1);
+    dropCompleted.textContent = `−${pct}% dropped`;
+  }
 }
 
 // ─── Sector Chart ────────────────────────────────────────
@@ -449,15 +488,17 @@ function buildCardHTML(mp) {
   ];
 
   const statBars = statDefs.map(d => {
-    const barPct = Math.min(100, (d.val / d.max) * 100);
-    const barColor = gradeBarColor(d.val);
+    const val    = d.val ?? 0;
+    const barPct = Math.min(100, (val / d.max) * 100);
+    const barColor = gradeBarColor(val);
+    const display  = d.val != null ? d.fmt(d.val) : '<span style="color:var(--text-muted);font-size:0.6rem">N/A</span>';
     return `
       <div class="stat-row">
         <span class="stat-label">${d.label}</span>
         <div class="stat-bar-bg">
           <div class="stat-bar-fill" style="width:${barPct}%;background:${barColor}"></div>
         </div>
-        <span class="stat-val">${d.fmt(d.val)}</span>
+        <span class="stat-val">${display}</span>
       </div>`;
   }).join('');
 
@@ -500,18 +541,18 @@ function buildCardHTML(mp) {
   const sectorColors = {
     roads: '#f59e0b', education: '#3b82f6', water: '#06b6d4', health: '#ef4444', other: '#6b7280',
   };
-  const sec = mp.sectors;
+  const sec = mp.sectors || {};
   const sectorBars = [
-    { name: 'Roads',     pct: sec.roads_pct,     color: sectorColors.roads },
-    { name: 'Education', pct: sec.education_pct,  color: sectorColors.education },
-    { name: 'Water',     pct: sec.water_pct,      color: sectorColors.water },
-    { name: 'Health',    pct: sec.health_pct,     color: sectorColors.health },
-    { name: 'Other',     pct: sec.other_pct,      color: sectorColors.other },
+    { name: 'Roads',     pct: sec.roads_pct     ?? null, color: sectorColors.roads },
+    { name: 'Education', pct: sec.education_pct ?? null, color: sectorColors.education },
+    { name: 'Water',     pct: sec.water_pct     ?? null, color: sectorColors.water },
+    { name: 'Health',    pct: sec.health_pct    ?? null, color: sectorColors.health },
+    { name: 'Other',     pct: sec.other_pct     ?? null, color: sectorColors.other },
   ].map(d => `
     <div class="back-sector-row">
       <div class="back-sector-dot" style="background:${d.color}"></div>
       <span class="back-sector-name">${d.name}</span>
-      <span class="back-sector-pct">${d.pct}%</span>
+      <span class="back-sector-pct">${d.pct != null ? d.pct + '%' : '—'}</span>
     </div>`).join('');
 
   const proofNote = s.proof_note || '';
