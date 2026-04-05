@@ -1,0 +1,79 @@
+name: Refresh MPLADS Data
+
+on:
+  schedule:
+    # Every Monday at 03:30 UTC (mplads.gov.in IIS server is most stable mid-week nights)
+    - cron: '30 3 * * 1'
+
+  # Allow manual trigger from Actions tab
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: 'Dry run (no commit)'
+        required: false
+        default: 'false'
+        type: boolean
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    permissions:
+      contents: write   # needed to push updated JSON files
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: |
+          pip install --upgrade pip
+          pip install beautifulsoup4 lxml
+
+      - name: Run scraper
+        id: scrape
+        run: |
+          if [ "${{ github.event.inputs.dry_run }}" = "true" ]; then
+            python scraper/fetch.py --dry-run
+          else
+            python scraper/fetch.py
+          fi
+        env:
+          PYTHONUNBUFFERED: "1"
+
+      - name: Check for data changes
+        id: check_changes
+        run: |
+          git diff --quiet data/ && echo "changed=false" >> $GITHUB_OUTPUT || echo "changed=true" >> $GITHUB_OUTPUT
+
+      - name: Commit and push updated data
+        if: steps.check_changes.outputs.changed == 'true' && github.event.inputs.dry_run != 'true'
+        run: |
+          git config user.name  "mplads-bot[bot]"
+          git config user.email "mplads-bot@users.noreply.github.com"
+          git add data/summary.json data/states.json data/sectors.json data/mps.json
+          git commit -m "data: weekly refresh $(date -u +'%Y-%m-%d')
+
+          Auto-updated by GitHub Actions scraper.
+          Source: mplads.gov.in public report endpoints."
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: No changes detected
+        if: steps.check_changes.outputs.changed == 'false'
+        run: echo "No data changes detected — mplads.gov.in data unchanged or site was unreachable (cached data preserved)."
+
+      - name: Notify on scrape failure
+        if: failure() && steps.scrape.outcome == 'failure'
+        run: |
+          echo "::warning::MPLADS scraper failed. The site (IIS 7.5, EOL since 2020) may be down. Cached JSON is still served. Check mplads.gov.in availability."

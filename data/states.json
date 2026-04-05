@@ -1,0 +1,42 @@
+{
+  "meta": {
+    "last_updated": "2026-04-02",
+    "source": "mplads.gov.in rptCMSStateWiseSummaryOfWork"
+  },
+  "states": [
+    {"rank": 1,  "state": "Kerala",           "mps": 20,  "released_cr": 410.5,  "spent_cr": 395.2,  "utilisation_pct": 96.3, "works_completed": 18420, "works_recommended": 19100, "completion_pct": 96.4},
+    {"rank": 2,  "state": "Tamil Nadu",       "mps": 39,  "released_cr": 812.3,  "spent_cr": 773.1,  "utilisation_pct": 95.2, "works_completed": 41230, "works_recommended": 43800, "completion_pct": 94.1},
+    {"rank": 3,  "state": "Himachal Pradesh", "mps": 4,   "released_cr": 82.5,   "spent_cr": 77.9,   "utilisation_pct": 94.4, "works_completed": 7821,  "works_recommended": 8300,  "completion_pct": 94.2},
+    {"rank": 4,  "state": "Sikkim",           "mps": 2,   "released_cr": 41.0,   "spent_cr": 38.5,   "utilisation_pct": 93.9, "works_completed": 3120,  "works_recommended": 3350,  "completion_pct": 93.1},
+    {"rank": 5,  "state": "Gujarat",          "mps": 26,  "released_cr": 541.2,  "spent_cr": 502.1,  "utilisation_pct": 92.8, "works_completed": 29340, "works_recommended": 31200, "completion_pct": 94.0},
+    {"rank": 6,  "state": "Odisha",           "mps": 21,  "released_cr": 437.5,  "spent_cr": 402.3,  "utilisation_pct": 91.9, "works_completed": 24100, "works_recommended": 26500, "completion_pct": 90.9},
+    {"rank": 7,  "state": "Andhra Pradesh",   "mps": 25,  "released_cr": 521.0,  "spent_cr": 474.8,  "utilisation_pct": 91.1, "works_completed": 27800, "works_recommended": 30100, "completion_pct": 92.4},
+    {"rank": 8,  "state": "Karnataka",        "mps": 28,  "released_cr": 583.4,  "spent_cr": 523.1,  "utilisation_pct": 89.7, "works_completed": 31200, "works_recommended": 34100, "completion_pct": 91.5},
+    {"rank": 9,  "state": "Rajasthan",        "mps": 25,  "released_cr": 520.8,  "spent_cr": 462.3,  "utilisation_pct": 88.8, "works_completed": 28300, "works_recommended": 31200, "completion_pct": 90.7},
+    {"rank": 10, "state": "Madhya Pradesh",   "mps": 29,  "released_cr": 604.1,  "spent_cr": 530.2,  "utilisation_pct": 87.8, "works_completed": 32100, "works_recommended": 35900, "completion_pct": 89.4},
+    {"rank": 11, "state": "Telangana",        "mps": 17,  "released_cr": 353.8,  "spent_cr": 308.2,  "utilisation_pct": 87.1, "works_completed": 18200, "works_recommended": 21000, "completion_pct": 86.7},
+    {"rank": 12, "state": "Maharashtra",      "mps": 48,  "released_cr": 999.6,  "spent_cr": 859.1,  "utilisation_pct": 85.9, "works_completed": 48300, "works_recommended": 56100, "completion_pct": 86.1},
+    {"rank": 13, "state": "Haryana",          "mps": 10,  "released_cr": 208.3,  "spent_cr": 177.4,  "utilisation_pct": 85.2, "works_completed": 10200, "works_recommended": 12100, "completion_pct": 84.3},
+    {"rank": 14, "state": "West Bengal",      "mps": 42,  "released_cr": 874.2,  "spent_cr": 731.1,  "utilisation_pct": 83.6, "works_completed": 39800, "works_recommended": 48200, "completion_pct": 82.6},
+    {"rank": 15, "state": "Punjab",           "mps": 13,  "released_cr": 270.8,  "spent_cr": 222.4,  "utilisation_pct": 82.1, "works_completed": 12300, "works_recommended": 15100, "completion_pct": 81.5},
+    {"rank": 16, "state": "Assam",            "mps": 14,  "released_cr": 291.5,  "spent_cr": 238.1,  "utilisation_pct": 81.7, "works_completed": 13200, "works_recommended": 16500, "completion_pct": 80.0},
+    {"rank": 17, "state": "Chhattisgarh",     "mps": 11,  "released_cr": 228.9,  "spent_cr": 183.2,  "utilisation_pct": 80.0, "works_completed": 10400, "works_recommended": 13200, "completion_pct": 78.8},
+    {"rank": 18, "state": "Bihar",            "mps": 40,  "released_cr": 832.8,  "spent_cr": 661.7,  "utilisation_pct": 79.5, "works_completed": 37200, "works_recommended": 48100, "completion_pct": 77.3},
+    {"rank": 19, "state": "Uttar Pradesh",    "mps": 80,  "released_cr": 1664.8, "spent_cr": 1298.1, "utilisation_pct": 78.0, "works_completed": 68300, "works_recommended": 89200, "completion_pct": 76.6},
+    {"rank": 20, "state": "Jharkhand",        "mps": 14,  "released_cr": 291.3,  "spent_cr": 222.8,  "utilisation_pct": 76.5, "works_completed": 12100, "works_recommended": 16300, "completion_pct": 74.2},
+    {"rank": 21, "state": "Delhi",            "mps": 7,   "released_cr": 145.8,  "spent_cr": 109.5,  "utilisation_pct": 75.1, "works_completed": 5800,  "works_recommended": 7900,  "completion_pct": 73.4},
+    {"rank": 22, "state": "Uttarakhand",      "mps": 5,   "released_cr": 104.1,  "spent_cr": 77.3,   "utilisation_pct": 74.3, "works_completed": 4200,  "works_recommended": 5800,  "completion_pct": 72.4},
+    {"rank": 23, "state": "Goa",              "mps": 2,   "released_cr": 41.6,   "spent_cr": 30.7,   "utilisation_pct": 73.8, "works_completed": 1800,  "works_recommended": 2500,  "completion_pct": 72.0},
+    {"rank": 24, "state": "Tripura",          "mps": 2,   "released_cr": 41.5,   "spent_cr": 30.5,   "utilisation_pct": 73.5, "works_completed": 1750,  "works_recommended": 2450,  "completion_pct": 71.4},
+    {"rank": 25, "state": "Manipur",          "mps": 2,   "released_cr": 41.4,   "spent_cr": 29.8,   "utilisation_pct": 72.0, "works_completed": 1620,  "works_recommended": 2300,  "completion_pct": 70.4},
+    {"rank": 26, "state": "Nagaland",         "mps": 1,   "released_cr": 20.7,   "spent_cr": 14.8,   "utilisation_pct": 71.5, "works_completed": 820,   "works_recommended": 1180,  "completion_pct": 69.5},
+    {"rank": 27, "state": "Arunachal Pradesh","mps": 2,   "released_cr": 41.6,   "spent_cr": 29.1,   "utilisation_pct": 70.0, "works_completed": 1600,  "works_recommended": 2350,  "completion_pct": 68.1},
+    {"rank": 28, "state": "Meghalaya",        "mps": 2,   "released_cr": 41.5,   "spent_cr": 28.5,   "utilisation_pct": 68.7, "works_completed": 1520,  "works_recommended": 2280,  "completion_pct": 66.7},
+    {"rank": 29, "state": "Jammu & Kashmir",  "mps": 6,   "released_cr": 124.8,  "spent_cr": 83.4,   "utilisation_pct": 66.8, "works_completed": 4100,  "works_recommended": 6500,  "completion_pct": 63.1},
+    {"rank": 30, "state": "Mizoram",          "mps": 1,   "released_cr": 20.8,   "spent_cr": 13.7,   "utilisation_pct": 65.9, "works_completed": 730,   "works_recommended": 1150,  "completion_pct": 63.5},
+    {"rank": 31, "state": "Puducherry",       "mps": 1,   "released_cr": 20.8,   "spent_cr": 13.4,   "utilisation_pct": 64.4, "works_completed": 710,   "works_recommended": 1140,  "completion_pct": 62.3},
+    {"rank": 32, "state": "Dadra & NH",       "mps": 1,   "released_cr": 20.7,   "spent_cr": 12.8,   "utilisation_pct": 61.8, "works_completed": 680,   "works_recommended": 1120,  "completion_pct": 60.7},
+    {"rank": 33, "state": "Lakshadweep",      "mps": 1,   "released_cr": 20.8,   "spent_cr": 11.2,   "utilisation_pct": 53.8, "works_completed": 580,   "works_recommended": 1100,  "completion_pct": 52.7},
+    {"rank": 34, "state": "Andaman & Nicobar","mps": 1,   "released_cr": 20.7,   "spent_cr": 10.1,   "utilisation_pct": 48.8, "works_completed": 520,   "works_recommended": 1090,  "completion_pct": 47.7}
+  ]
+}

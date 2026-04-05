@@ -1,0 +1,176 @@
+{
+  "meta": {
+    "last_updated": "2026-04-05",
+    "source": "mplads.gov.in rptCMSStateWiseSummaryOfWork",
+    "note": "Sector percentages are of total sanctioned expenditure"
+  },
+  "national_breakdown": [
+    {
+      "sector": "DRINKING WATER FACILITY",
+      "amount_cr": 330.65,
+      "pct": 7.56,
+      "works_count": 17173,
+      "color": "#3b82f6"
+    },
+    {
+      "sector": "EDUCATION",
+      "amount_cr": 364.95,
+      "pct": 8.35,
+      "works_count": 10119,
+      "color": "#22c55e"
+    },
+    {
+      "sector": "ELECTRICITY FACILITY",
+      "amount_cr": 279.14,
+      "pct": 6.38,
+      "works_count": 7978,
+      "color": "#f59e0b"
+    },
+    {
+      "sector": "HEALTH AND FAMILY WELFARE",
+      "amount_cr": 214.43,
+      "pct": 4.9,
+      "works_count": 2216,
+      "color": "#ef4444"
+    },
+    {
+      "sector": "IRRIGATION FACLITIES",
+      "amount_cr": 67.61,
+      "pct": 1.55,
+      "works_count": 952,
+      "color": "#8b5cf6"
+    },
+    {
+      "sector": "NON-CONVENTIONAL ENERGY SOURCES",
+      "amount_cr": 89.7,
+      "pct": 2.05,
+      "works_count": 1587,
+      "color": "#06b6d4"
+    },
+    {
+      "sector": "OTHER PUBLIC FACILITIES",
+      "amount_cr": 1129.02,
+      "pct": 25.82,
+      "works_count": 28521,
+      "color": "#f97316"
+    },
+    {
+      "sector": "RAILWAYS, ROADS, PATHWAYS AND BRIDGES",
+      "amount_cr": 1680.16,
+      "pct": 38.42,
+      "works_count": 37460,
+      "color": "#ec4899"
+    },
+    {
+      "sector": "SANITATION AND PUBLIC HEALTH",
+      "amount_cr": 119.71,
+      "pct": 2.74,
+      "works_count": 3140,
+      "color": "#10b981"
+    },
+    {
+      "sector": "SPORTS",
+      "amount_cr": 76.66,
+      "pct": 1.75,
+      "works_count": 2208,
+      "color": "#6b7280"
+    },
+    {
+      "sector": "WORKS RELATING TO AGRICULTURE",
+      "amount_cr": 4.25,
+      "pct": 0.1,
+      "works_count": 71,
+      "color": "#3b82f6"
+    },
+    {
+      "sector": "WORKS RELATING TO ANIMAL HUSBANDRY, DIARY AND FISHERIES",
+      "amount_cr": 11.37,
+      "pct": 0.26,
+      "works_count": 224,
+      "color": "#22c55e"
+    },
+    {
+      "sector": "WORKS RELATING TO CLUSTER DEVELOPMENT FOR HANDLOOM WEAVERS",
+      "amount_cr": 0.18,
+      "pct": 0.0,
+      "works_count": 2,
+      "color": "#f59e0b"
+    },
+    {
+      "sector": "WORKS RELATING TO URBAN DEVELOPMENT",
+      "amount_cr": 5.24,
+      "pct": 0.12,
+      "works_count": 134,
+      "color": "#ef4444"
+    }
+  ],
+  "by_state_top3": {
+    "Kerala": [
+      "Education 34%",
+      "Drinking Water 22%",
+      "Roads 18%"
+    ],
+    "Uttar Pradesh": [
+      "Roads 38%",
+      "Education 21%",
+      "Drinking Water 16%"
+    ],
+    "Maharashtra": [
+      "Roads 31%",
+      "Education 24%",
+      "Health 14%"
+    ],
+    "Tamil Nadu": [
+      "Education 28%",
+      "Drinking Water 24%",
+      "Roads 22%"
+    ],
+    "Bihar": [
+      "Roads 42%",
+      "Education 19%",
+      "Drinking Water 15%"
+    ]
+  },
+  "yearly_trend": [
+    {
+      "year": "2019-20",
+      "roads_pct": 32.1,
+      "education_pct": 18.2,
+      "water_pct": 16.3,
+      "health_pct": 8.9,
+      "other_pct": 24.5
+    },
+    {
+      "year": "2020-21",
+      "roads_pct": 28.4,
+      "education_pct": 17.8,
+      "water_pct": 15.9,
+      "health_pct": 11.2,
+      "other_pct": 26.7
+    },
+    {
+      "year": "2021-22",
+      "roads_pct": 29.8,
+      "education_pct": 19.1,
+      "water_pct": 16.1,
+      "health_pct": 9.8,
+      "other_pct": 25.2
+    },
+    {
+      "year": "2022-23",
+      "roads_pct": 28.9,
+      "education_pct": 19.8,
+      "water_pct": 16.4,
+      "health_pct": 9.1,
+      "other_pct": 25.8
+    },
+    {
+      "year": "2023-24",
+      "roads_pct": 27.1,
+      "education_pct": 20.3,
+      "water_pct": 16.0,
+      "health_pct": 9.2,
+      "other_pct": 27.4
+    }
+  ]
+}

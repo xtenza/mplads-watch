@@ -1,0 +1,92 @@
+{
+  "meta": {
+    "last_updated": "2026-04-05",
+    "source": "mplads.gov.in",
+    "coverage": "17th LS (2019-2024) + 18th LS (2024-present)",
+    "note": "Auto-updated by GitHub Actions scraper."
+  },
+  "national": {
+    "total_released_cr": 17455.0,
+    "total_spent_cr": 14950.47,
+    "utilisation_pct": 85.7,
+    "total_mps": 1126,
+    "mps_above_75pct": 856,
+    "mps_below_40pct": 37,
+    "unspent_cr": 2504.53,
+    "annual_allocation_per_mp_cr": 5.0
+  },
+  "by_ls": {
+    "17th": {
+      "period": "2019-2024",
+      "total_released_cr": 12945.0,
+      "total_spent_cr": 11319.17,
+      "utilisation_pct": 87.4,
+      "total_mps": 570,
+      "mps_above_75pct": 488,
+      "mps_below_40pct": 11,
+      "unspent_cr": 1625.83,
+      "annual_allocation_per_mp_cr": 5.0
+    },
+    "18th": {
+      "period": "2024-present",
+      "total_released_cr": 4510.0,
+      "total_spent_cr": 3631.3,
+      "utilisation_pct": 80.5,
+      "total_mps": 556,
+      "mps_above_75pct": 368,
+      "mps_below_40pct": 26,
+      "unspent_cr": 878.7,
+      "annual_allocation_per_mp_cr": 5.0
+    }
+  },
+  "hall_of_shame": {
+    "description": "MPs with highest unspent allocations (₹ Crore)",
+    "top_unspent": [
+      {
+        "name": "Shri Rebati Tripura",
+        "constituency": "TRIPURA EAST(ST)",
+        "state": "Tripura",
+        "party": null,
+        "released_cr": 24.5,
+        "spent_cr": 0.0,
+        "unspent_cr": 17.72
+      },
+      {
+        "name": "Shri Nanabhau Falgunrao Patole",
+        "constituency": "BHANDARA-GONDIYA",
+        "state": "Maharashtra",
+        "party": null,
+        "released_cr": 17.5,
+        "spent_cr": 0.0,
+        "unspent_cr": 17.5
+      },
+      {
+        "name": "Shri Raghu Ramakrishna Raju Kanumuru",
+        "constituency": "NARASAPURAM",
+        "state": "Andhra Pradesh",
+        "party": null,
+        "released_cr": 5.0,
+        "spent_cr": 0.0,
+        "unspent_cr": 9.6
+      },
+      {
+        "name": "Shri Kristappa Nimmala",
+        "constituency": "HINDUPUR",
+        "state": "Andhra Pradesh",
+        "party": null,
+        "released_cr": 25.0,
+        "spent_cr": 16.48,
+        "unspent_cr": 8.52
+      },
+      {
+        "name": "Shri Murali Mohan Maganti",
+        "constituency": "RAJAHMUNDRY",
+        "state": "Andhra Pradesh",
+        "party": null,
+        "released_cr": 22.5,
+        "spent_cr": 13.72,
+        "unspent_cr": 8.22
+      }
+    ]
+  }
+}
