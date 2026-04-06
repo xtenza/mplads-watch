@@ -3,16 +3,16 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MPLADS Watch — MP Spending Accountability</title>
+  <title>Sansad Kharch — MP Spending Accountability</title>
   <meta name="description" content="Track how Indian MPs spend their ₹5 Crore/year MPLADS allocation. Public accountability in plain English." />
-  <meta property="og:title" content="MPLADS Watch — MP Spending Accountability" />
-  <meta property="og:description" content="₹14,823 Cr released. Only ₹10,941 Cr spent. See where your MP stands." />
+  <meta property="og:title" content="Sansad Kharch — MP Spending Accountability" />
+  <meta property="og:description" content="₹17,455 Cr released to MPs. See where the money went — and where it didn't." />
   <meta property="og:type" content="website" />
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Mono:wght@400;500&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
 
   <!-- Chart.js -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js"></script>
@@ -28,14 +28,14 @@
   <div class="container header-inner">
     <div class="logo">
       <span class="logo-flag">🇮🇳</span>
-      <span class="logo-text">MPLADS<span class="logo-watch">Watch</span></span>
+      <span class="logo-text">SANSAD<span class="logo-kharch">KHARCH</span></span>
     </div>
     <nav class="site-nav">
-      <a href="#accountability">Accountability</a>
       <a href="#shame">Hall of Shame</a>
       <a href="#sectors">Sectors</a>
       <a href="#states">States</a>
       <a href="#cards">MP Cards</a>
+      <a href="#faq">FAQ</a>
     </nav>
     <div id="freshness-badge" class="freshness-badge">
       <span class="freshness-dot"></span>
@@ -49,87 +49,63 @@
 ═══════════════════════════════════════════ -->
 <section class="hero">
   <div class="container">
-    <div class="hero-eyebrow">PUBLIC MONEY. PUBLIC RECORD. NO EXCUSES.</div>
+    <div class="hero-eyebrow" data-i18n="hero.eyebrow">PUBLIC MONEY. PUBLIC RECORD. NO EXCUSES.</div>
     <h1 class="hero-headline">
-      <span id="hero-released" class="hero-num shock-num">₹14,823 Cr</span>
+      <span id="hero-released" class="hero-num shock-num">₹17,455 Cr</span>
       <span class="hero-label">released to MPs.</span>
     </h1>
     <h1 class="hero-headline">
       <span class="hero-label">Only</span>
-      <span id="hero-spent" class="hero-num shock-num accent-saffron">₹10,941 Cr</span>
-      <span class="hero-label">spent.</span>
+      <span id="hero-spent" class="hero-num shock-num accent-saffron">₹14,950 Cr</span>
+      <span class="hero-label">reached the ground.</span>
     </h1>
-    <p class="hero-sub">
-      <span id="hero-unspent" class="hero-num-sm">₹3,882 Cr</span> sitting unspent.
-      Your MP gets <strong>₹5 Crore/year</strong> to build roads, schools, and hospitals.
-      Are they using it?
-    </p>
-    <div class="hero-stats-row">
-      <div class="hero-stat">
-        <div class="hero-stat-num" id="hero-mps">788</div>
-        <div class="hero-stat-label">MPs tracked</div>
-      </div>
-      <div class="hero-stat">
-        <div class="hero-stat-num" id="hero-util">73.8%</div>
+
+    <!-- 4 stat boxes (2×2 mobile, 4×1 desktop) -->
+    <div class="hero-stat-boxes">
+      <div class="hero-stat-box">
+        <div class="hero-stat-num" id="hero-util">85.7%</div>
         <div class="hero-stat-label">National utilisation</div>
       </div>
-      <div class="hero-stat">
-        <div class="hero-stat-num accent-red" id="hero-shame">98</div>
-        <div class="hero-stat-label">MPs below 40%</div>
+      <div class="hero-stat-box">
+        <div class="hero-stat-num" id="hero-recommended">—</div>
+        <div class="hero-stat-label">Works recommended</div>
       </div>
-      <div class="hero-stat">
-        <div class="hero-stat-num accent-green" id="hero-above">412</div>
-        <div class="hero-stat-label">MPs above 75%</div>
+      <div class="hero-stat-box">
+        <div class="hero-stat-num" id="hero-sanctioned">—</div>
+        <div class="hero-stat-label">Works sanctioned</div>
+      </div>
+      <div class="hero-stat-box">
+        <div class="hero-stat-num" id="hero-completed">—</div>
+        <div class="hero-stat-label">Works completed</div>
       </div>
     </div>
-    <a href="#cards" class="btn-primary">Find Your MP →</a>
+
+    <!-- National utilisation bar (full width, 8px, saffron) -->
+    <div class="hero-util-bar-wrap">
+      <div class="hero-util-bar-bg">
+        <div class="hero-util-bar-fill" id="hero-util-bar" style="width:85.7%"></div>
+      </div>
+      <div class="hero-util-bar-label" id="hero-util-label">National average · 85.7% of allocated funds spent</div>
+    </div>
+
+    <!-- Pipeline summary — text only, no funnel diagram -->
+    <p class="hero-pipeline" id="hero-pipeline"></p>
+
+    <!-- Accountability note -->
+    <p class="hero-accountability-note">MPs recommend. Districts sanction. Agencies complete.</p>
+
+    <a href="#cards" class="btn-primary" data-i18n="hero.cta">Find Your MP →</a>
   </div>
-  <div class="hero-bg-text" aria-hidden="true">MPLADS</div>
+  <div class="hero-bg-text" aria-hidden="true">SANSAD</div>
 </section>
 
 <!-- ═══════════════════════════════════════════
-     SECTION 2 — ACCOUNTABILITY METER
-═══════════════════════════════════════════ -->
-<section class="section" id="accountability">
-  <div class="container">
-    <div class="section-label">SECTION 02</div>
-    <h2 class="section-title">National Accountability Meter</h2>
-    <p class="section-sub">Aggregate utilisation across all 788 MPs. Updated weekly from mplads.gov.in.</p>
-
-    <div class="gauge-wrap">
-      <canvas id="gaugeChart" width="340" height="200"></canvas>
-      <div class="gauge-center">
-        <div class="gauge-pct" id="gauge-pct">73.8%</div>
-        <div class="gauge-label">National Avg</div>
-      </div>
-    </div>
-
-    <div class="grade-legend">
-      <div class="grade-pill grade-S">S &nbsp;90%+</div>
-      <div class="grade-pill grade-A">A &nbsp;75–90%</div>
-      <div class="grade-pill grade-B">B &nbsp;60–75%</div>
-      <div class="grade-pill grade-C">C &nbsp;40–60%</div>
-      <div class="grade-pill grade-D">D &nbsp;&lt;40%</div>
-    </div>
-
-    <div class="ls-switcher-wrap">
-      <span class="ls-label">LS Period:</span>
-      <div class="ls-switcher" id="ls-switcher">
-        <button class="ls-btn active" data-ls="all">All</button>
-        <button class="ls-btn" data-ls="17th">17th LS (2019–24)</button>
-        <button class="ls-btn" data-ls="18th">18th LS (2024–)</button>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════════
-     SECTION 3 — HALL OF SHAME
+     SECTION 2 — HALL OF SHAME
 ═══════════════════════════════════════════ -->
 <section class="section section-dark" id="shame">
   <div class="container">
-    <div class="section-label">SECTION 03</div>
-    <h2 class="section-title">Hall of Shame — Unspent Funds</h2>
+    <div class="section-label">SECTION 02</div>
+    <h2 class="section-title">Hall of Shame — Highest Unspent ₹</h2>
     <p class="section-sub">
       MPs with the largest unspent MPLADS allocations. This is public money meant for your constituency.
     </p>
@@ -139,48 +115,11 @@
 </section>
 
 <!-- ═══════════════════════════════════════════
-     SECTION 4 — WORKS FUNNEL
+     SECTION 3 — SECTOR BREAKDOWN
 ═══════════════════════════════════════════ -->
-<section class="section" id="funnel">
+<section class="section" id="sectors">
   <div class="container">
-    <div class="section-label">SECTION 04</div>
-    <h2 class="section-title">The Works Funnel</h2>
-    <p class="section-sub">From recommended to actually completed — see where works fall through.</p>
-
-    <div class="funnel-wrap">
-      <div class="funnel-step funnel-recommend">
-        <div class="funnel-num" id="funnel-recommended">—</div>
-        <div class="funnel-lbl">Works Recommended</div>
-      </div>
-      <div class="funnel-arrow">▼</div>
-      <div class="funnel-step funnel-sanction">
-        <div class="funnel-num" id="funnel-sanctioned">—</div>
-        <div class="funnel-lbl">Works Sanctioned</div>
-        <div class="funnel-drop" id="funnel-drop-sanctioned"></div>
-      </div>
-      <div class="funnel-arrow">▼</div>
-      <div class="funnel-step funnel-complete">
-        <div class="funnel-num" id="funnel-completed">—</div>
-        <div class="funnel-lbl">Works Completed</div>
-        <div class="funnel-drop" id="funnel-drop-completed"></div>
-      </div>
-    </div>
-
-    <div class="funnel-disclaimer">
-      <strong>⚠️ Proof on Record:</strong> "Completed" is self-reported by the implementing agency.
-      CAG audits have found dates entered before schemes existed (pre-1993). RTI responses revealed
-      0 inspections done in Mumbai across 2017–18. For post-Apr 2023 data, eSAKSHI portal photo
-      uploads and utilisation certificates provide partial verification.
-    </div>
-  </div>
-</section>
-
-<!-- ═══════════════════════════════════════════
-     SECTION 5 — SECTOR BREAKDOWN
-═══════════════════════════════════════════ -->
-<section class="section section-dark" id="sectors">
-  <div class="container">
-    <div class="section-label">SECTION 05</div>
+    <div class="section-label">SECTION 03</div>
     <h2 class="section-title">Where the Money Goes</h2>
     <p class="section-sub">National sector-wise expenditure breakdown.</p>
     <div class="chart-row">
@@ -193,13 +132,18 @@
 </section>
 
 <!-- ═══════════════════════════════════════════
-     SECTION 6 — STATE LEADERBOARD
+     SECTION 4 — STATE LEADERBOARD
 ═══════════════════════════════════════════ -->
-<section class="section" id="states">
+<section class="section section-dark" id="states">
   <div class="container">
-    <div class="section-label">SECTION 06</div>
+    <div class="section-label">SECTION 04</div>
     <h2 class="section-title">State Leaderboard</h2>
-    <p class="section-sub">Best and worst performing states by utilisation %.</p>
+    <p class="section-sub">Best and worst performing states by utilisation %. Lok Sabha and Rajya Sabha ranked separately.</p>
+
+    <div class="state-chamber-tabs">
+      <button class="state-chamber-tab active" data-chamber="LS" onclick="setStateChamber('LS')">Lok Sabha</button>
+      <button class="state-chamber-tab" data-chamber="RS" onclick="setStateChamber('RS')">Rajya Sabha</button>
+    </div>
 
     <div class="state-tabs">
       <button class="state-tab active" id="tab-best" onclick="showStateView('best')">Top Performers</button>
@@ -217,7 +161,6 @@
             <th>Released (₹Cr)</th>
             <th>Spent (₹Cr)</th>
             <th>Utilisation</th>
-            <th>Grade</th>
           </tr>
         </thead>
         <tbody id="state-tbody"></tbody>
@@ -227,40 +170,37 @@
 </section>
 
 <!-- ═══════════════════════════════════════════
-     SECTION 7 — MP CARDS GRID
+     SECTION 5 — MP CARDS GRID
 ═══════════════════════════════════════════ -->
-<section class="section section-dark" id="cards">
+<section class="section" id="cards">
   <div class="container">
-    <div class="section-label">SECTION 07</div>
+    <div class="section-label">SECTION 05</div>
     <h2 class="section-title">MP Report Cards</h2>
-    <p class="section-sub">Click a card to flip it. Share on WhatsApp. Name the MP, not just the number.</p>
+    <p class="section-sub">Click a card to flip it and see full history. Sorted by highest unspent ₹.</p>
 
-    <!-- Search + Filter toolbar -->
+    <!-- Filter + search toolbar -->
     <div class="cards-toolbar">
-      <input
-        type="search"
-        id="mp-search"
-        class="mp-search"
-        placeholder="Search MP name or constituency…"
-        autocomplete="off"
-      />
       <div class="filter-row">
-        <span class="filter-label">Filter:</span>
-        <button class="filter-btn active" data-grade="all">All</button>
-        <button class="filter-btn grade-S" data-grade="S">S — Gold</button>
-        <button class="filter-btn grade-A" data-grade="A">A — Green</button>
-        <button class="filter-btn grade-B" data-grade="B">B — Blue</button>
-        <button class="filter-btn grade-C" data-grade="C">C — Amber</button>
-        <button class="filter-btn grade-D" data-grade="D">D — Red</button>
+        <button class="filter-btn chamber-btn active" data-chamber="all">All</button>
+        <button class="filter-btn chamber-btn" data-chamber="LS">Lok Sabha</button>
+        <button class="filter-btn chamber-btn" data-chamber="RS">Rajya Sabha</button>
+        <button class="filter-btn chamber-btn" data-chamber="Nominated">Nominated</button>
       </div>
-      <div class="sort-row">
-        <span class="filter-label">Sort:</span>
-        <select id="sort-select" class="sort-select">
-          <option value="grade">By Grade</option>
-          <option value="utilisation">By Utilisation %</option>
-          <option value="spent">By Amount Spent</option>
-          <option value="unspent">By Unspent (Shame)</option>
+      <div class="filter-row filter-row-2">
+        <select id="state-filter" class="filter-select">
+          <option value="">All States ▾</option>
         </select>
+        <select id="party-filter" class="filter-select">
+          <option value="">All Parties ▾</option>
+        </select>
+        <input
+          type="search"
+          id="mp-search"
+          class="mp-search"
+          placeholder="Search name or constituency…"
+          autocomplete="off"
+        />
+        <span class="mp-count" id="cards-count"></span>
       </div>
     </div>
 
@@ -268,18 +208,162 @@
     <div class="cards-grid" id="cards-grid">
       <div class="cards-loading">Loading MP data…</div>
     </div>
-
-    <p class="cards-count" id="cards-count"></p>
   </div>
 </section>
 
 <!-- ═══════════════════════════════════════════
-     SECTION 8 — DATA FRESHNESS + FOOTER
+     SECTION 6 — FAQ
+═══════════════════════════════════════════ -->
+<section class="section section-dark" id="faq">
+  <div class="container">
+    <div class="section-label">SECTION 06</div>
+    <h2 class="section-title">Frequently Asked Questions</h2>
+    <p class="section-sub">Everything you need to know about MPLADS and this data.</p>
+
+    <div class="faq-list">
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFAQ(this)">
+          What is MPLADS?
+          <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-a">
+          <p>Each MP gets ₹5 Crore/year to recommend local development works. The MP recommends only. District Authority sanctions and executes. MPs do not handle the money directly.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFAQ(this)">
+          How much does each MP get?
+          <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-a">
+          <p>₹5 Crore per year. Released in two instalments of ₹2.5 Cr directly to the District Authority — not to the MP. Total across ~788 MPs: approximately ₹3,940 Crore per year.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFAQ(this)">
+          What happens if the money is not spent?
+          <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-a">
+          <p>It is non-lapsable — rolls over to next year within the term. No penalty exists for low utilisation. Any balance remaining 18 months after an MP leaves office is returned to the Consolidated Fund of India.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFAQ(this)">
+          What can it be spent on?
+          <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-a">
+          <p>Roads, water, education, health, sanitation, electricity, irrigation, sports, public facilities. Must create durable community assets. Cannot be used for office buildings, land acquisition, grants to individuals, or naming assets after people.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFAQ(this)">
+          What is the difference between Lok Sabha and Rajya Sabha MPs?
+          <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-a">
+          <p>Lok Sabha MPs spend in their own constituency only. Rajya Sabha MPs can spend anywhere in their elected state. Nominated MPs can spend in any state in India. This makes RS and Nominated spending harder to track locally.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFAQ(this)">
+          What are the mandated timelines?
+          <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-a">
+          <p><strong>45 days:</strong> District Authority must sanction or reject.<br>
+          <strong>12 months:</strong> Implementing agency must complete the work.<br>
+          <strong>18 months:</strong> Works must close after MP's tenure ends.<br>
+          Tracked on eSAKSHI portal since April 2023.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFAQ(this)">
+          Where does this data come from?
+          <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-a">
+          <p>Two sources:<br>
+          <strong>mplads.gov.in</strong> — aggregate data up to 2023.<br>
+          <strong>mplads.mospi.gov.in (eSAKSHI)</strong> — work-level data, photos, documents from April 2023 onwards. Real-time updates.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFAQ(this)">
+          Why is there no evidence for works before April 2023?
+          <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-a">
+          <p>The scheme ran on paper until 2023. No photos, no digital documents existed. eSAKSHI changed this — but only covers works recommended after 1 April 2023. For the 17th Lok Sabha (2019–2024), only 2023–24 has digital evidence.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFAQ(this)">
+          What does "Proof on Record" mean?
+          <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-a">
+          <p>Our measure of verifiable evidence for completed works. Includes: photo upload rate, document submission rate, and timeline compliance. High = well documented. Low = "completed" is largely self-declared by contractor.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFAQ(this)">
+          What does "completed" mean — is it verified?
+          <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-a">
+          <p>No independent verification exists. "Completed" means the implementing agency marked the work done after final payment. CAG found works marked complete with dates before 1993 — before the scheme even existed. RTI responses show 0% inspection in many districts.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFAQ(this)">
+          Can I file an RTI about works in my area?
+          <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-a">
+          <p>Yes. File with the Nodal District Authority for your MP. Ask for: works sanctioned, amounts spent, completion certificates, inspection reports.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <button class="faq-q" onclick="toggleFAQ(this)">
+          Who audits MPLADS?
+          <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+        </button>
+        <div class="faq-a">
+          <p>CAG audits periodically. Key findings:</p>
+          <ul>
+            <li>Works dated before scheme existed</li>
+            <li>0% inspection in many districts</li>
+            <li>Utilisation certificates not submitted</li>
+            <li>Action taken on 2001 report submitted 8 years late</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════
+     SECTION 7 — FOOTER + DATA FRESHNESS
 ═══════════════════════════════════════════ -->
 <footer class="site-footer">
   <div class="container footer-inner">
     <div class="footer-left">
-      <div class="footer-logo">🇮🇳 MPLADS Watch</div>
+      <div class="footer-logo">🇮🇳 Sansad Kharch</div>
       <p class="footer-tagline">Citizen accountability. No jargon. Just facts.</p>
       <div id="footer-freshness" class="footer-freshness"></div>
     </div>
@@ -305,14 +389,6 @@
     Not affiliated with any political party or government body.
   </div>
 </footer>
-
-<!-- MP Card Modal -->
-<div class="modal-overlay" id="modal-overlay" onclick="closeModal()">
-  <div class="modal-inner" onclick="event.stopPropagation()">
-    <button class="modal-close" onclick="closeModal()">✕</button>
-    <div id="modal-content"></div>
-  </div>
-</div>
 
 <script src="app.js"></script>
 </body>
