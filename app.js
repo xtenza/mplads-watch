@@ -448,7 +448,13 @@ function renderCards() {
   const mps   = filteredMPs();
 
   if (mps.length === 0) {
-    grid.innerHTML = '<div class="cards-loading">No MPs match your filter.</div>';
+    let msg = 'No MPs match your filter.';
+    if (state.currentChamber === 'RS') {
+      msg = 'Rajya Sabha data is not yet available. The scraper currently covers Lok Sabha only (17th &amp; 18th LS). RS data will appear here once added.';
+    } else if (state.currentChamber === 'Nominated') {
+      msg = 'Nominated MP data is not yet available. Only Lok Sabha data is currently scraped.';
+    }
+    grid.innerHTML = `<div class="cards-loading">${msg}</div>`;
     count.textContent = '';
     return;
   }
