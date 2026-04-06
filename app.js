@@ -121,27 +121,30 @@ function updateHeroNumbers() {
 
   document.getElementById('hero-util').textContent = `${n.utilisation_pct}%`;
 
-  // Derive works totals from subordinate data
+  // Derive works totals — all from states.json to keep dataset consistent
+  // sectors.json works_count is sector-categorisation data, not sanctioned works count
   const totalRec  = state.states.states.reduce((s, st) => s + (st.works_recommended || 0), 0);
   const totalComp = state.states.states.reduce((s, st) => s + (st.works_completed   || 0), 0);
-  const totalSanc = state.sectors.national_breakdown.reduce((s, sec) => s + (sec.works_count || 0), 0);
+  // Proxy for "has digital record": works appearing in sectors.json (sector data exists = eSAKSHI record exists)
+  const totalWithEvidence = state.sectors.national_breakdown.reduce((s, sec) => s + (sec.works_count || 0), 0);
+  const totalNoEvidence   = Math.max(0, totalComp - totalWithEvidence);
 
-  document.getElementById('hero-recommended').textContent = fmtNum(totalRec || null);
-  document.getElementById('hero-sanctioned').textContent  = fmtNum(totalSanc || null);
-  document.getElementById('hero-completed').textContent   = fmtNum(totalComp || null);
+  document.getElementById('hero-recommended').textContent  = fmtNum(totalRec  || null);
+  document.getElementById('hero-completed').textContent    = fmtNum(totalComp || null);
+  document.getElementById('hero-no-evidence').textContent  = fmtNum(totalNoEvidence || null);
 
   // Util bar
   document.getElementById('hero-util-bar').style.width = `${n.utilisation_pct}%`;
   document.getElementById('hero-util-label').textContent =
     `National average · ${n.utilisation_pct}% of allocated funds spent`;
 
-  // Pipeline summary
+  // Pipeline summary — only use states.json numbers (same dataset)
   const pipelineEl = document.getElementById('hero-pipeline');
   if (totalRec > 0) {
-    const sancPer100 = Math.round((totalSanc / totalRec) * 100);
     const compPer100 = Math.round((totalComp / totalRec) * 100);
+    const noPer100   = Math.round((totalNoEvidence / totalRec) * 100);
     pipelineEl.textContent =
-      `Of every 100 works recommended: ${sancPer100} sanctioned · ${compPer100} completed`;
+      `Of every 100 works recommended: ${compPer100} marked complete — but ${noPer100} have no digital evidence`;
   }
 }
 
@@ -172,14 +175,14 @@ function renderShameChart() {
         {
           label: 'Spent (₹Cr)',
           data:  MPs.map(m => m.spent_cr),
-          backgroundColor: 'rgba(255,255,255,0.15)',
+          backgroundColor: 'rgba(34,197,94,0.75)',
           borderRadius: 2,
           barThickness: 10,
         },
         {
           label: 'Unspent (₹Cr)',
           data:  MPs.map(m => m.unspent_cr),
-          backgroundColor: '#FF9933',
+          backgroundColor: 'rgba(239,68,68,0.85)',
           borderRadius: 2,
           barThickness: 10,
         },
@@ -379,6 +382,11 @@ function bindToolbar() {
     state.currentParty = e.target.value;
     renderCards();
   });
+
+  document.getElementById('sort-select').addEventListener('change', e => {
+    state.currentSort = e.target.value;
+    renderCards();
+  });
 }
 
 // ─── Cards ───────────────────────────────────────────────
@@ -407,13 +415,29 @@ function filteredMPs() {
     );
   }
 
-  // Sort — default unspent descending (most wasteful first)
+  // Sort
   list = [...list];
-  list.sort((a, b) => {
-    const ua = a.stats.unspent_cr ?? (a.stats.released_cr - a.stats.spent_cr) ?? 0;
-    const ub = b.stats.unspent_cr ?? (b.stats.released_cr - b.stats.spent_cr) ?? 0;
-    return ub - ua;
-  });
+  switch (state.currentSort) {
+    case 'unspent':
+      list.sort((a, b) => {
+        const ua = a.stats.unspent_cr ?? (a.stats.released_cr - a.stats.spent_cr) ?? 0;
+        const ub = b.stats.unspent_cr ?? (b.stats.released_cr - b.stats.spent_cr) ?? 0;
+        return ub - ua;
+      });
+      break;
+    case 'util_asc':
+      list.sort((a, b) => (a.stats.utilisation_pct ?? 0) - (b.stats.utilisation_pct ?? 0));
+      break;
+    case 'util_desc':
+      list.sort((a, b) => (b.stats.utilisation_pct ?? 0) - (a.stats.utilisation_pct ?? 0));
+      break;
+    case 'released':
+      list.sort((a, b) => (b.stats.released_cr ?? 0) - (a.stats.released_cr ?? 0));
+      break;
+    case 'name':
+      list.sort((a, b) => a.name.localeCompare(b.name));
+      break;
+  }
 
   return list;
 }
@@ -488,6 +512,12 @@ function buildCardHTML(mp) {
   const onTimePct     = s.completion_rate_pct;
   const onTimeDisplay = onTimePct != null ? `${onTimePct.toFixed(0)}%` : '—';
 
+  // Grade badge
+  const grade = s.grade || null;
+  const gradeBadge = grade
+    ? `<span class="grade-badge grade-${grade.toLowerCase()}">${grade}</span>`
+    : '';
+
   // POR badge
   const porBadge = s.proof_score != null
     ? `<span class="por-badge">POR ${s.proof_score}/100</span>`
@@ -555,6 +585,7 @@ function buildCardHTML(mp) {
           ${chamberBadge}
           <div class="card-header-right">
             ${mp.party ? `<span class="card-party-badge">${mp.party}</span>` : ''}
+            ${gradeBadge}
             <span class="card-ls-period">${mp.ls_period || '—'} LS</span>
           </div>
         </div>

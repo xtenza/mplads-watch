@@ -71,8 +71,8 @@
         <div class="hero-stat-label">Works recommended</div>
       </div>
       <div class="hero-stat-box">
-        <div class="hero-stat-num" id="hero-sanctioned">—</div>
-        <div class="hero-stat-label">Works sanctioned</div>
+        <div class="hero-stat-num" id="hero-no-evidence">—</div>
+        <div class="hero-stat-label">Completed, no evidence</div>
       </div>
       <div class="hero-stat-box">
         <div class="hero-stat-num" id="hero-completed">—</div>
@@ -192,6 +192,13 @@
         </select>
         <select id="party-filter" class="filter-select">
           <option value="">All Parties ▾</option>
+        </select>
+        <select id="sort-select" class="filter-select">
+          <option value="unspent">Most Unspent ▾</option>
+          <option value="util_asc">Lowest Utilisation</option>
+          <option value="util_desc">Highest Utilisation</option>
+          <option value="released">Highest Allocation</option>
+          <option value="name">Name A–Z</option>
         </select>
         <input
           type="search"
